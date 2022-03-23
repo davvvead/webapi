@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Form</title>
+    <style>
+        h1 {
+    font-family: Montserrat, Helvetica, sans-serif !important;
+    text-align: center;
+    color: #042940;
+}
+.form-content {
+    margin: 0 auto;
+}
+.form {
+    margin: 0 auto;
+    padding: 20px 40px;
+    background: #D6D58E;
+    width: 400px;
+    height: auto;
+    border-radius: 15px;
+}
+form {
+    margin: 20px 0;
+}
+.form-label {
+    margin-bottom: 5px;
+    color: #042940;
+}
+.form-input {
+    margin-bottom: 1rem;
+}
+button {
+    text-align: center;
+    margin: 0 auto;
+    width: 100px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background: #FFF;
+}
+label {
+    font-family: Arial, Helvetica, sans-serif;
+}
+input {
+    border: 0px;
+    width: 90%;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 2px;
+}
+select {
+    border: 0px;
+    width: 90%;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 2px;
+}
+.submit-btn {
+    display: flex;
+    align-items: center;
+}
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Data Entry Point</h1>
+    <div class="form">
+        <form method="post" id="userdetails">
+            <div class="form-content">
+                <div class="form-label">
+                    <label for="fName">First Name</label>
+                </div>
+                <div class="form-input">
+                    <input type="text" placeholder="First Name" id="fname" name="fname">
+                </div>
+                <div class="form-label">
+                    <label for="">Middle Name</label>
+                </div>
+                <div class="form-input">
+                    <input type="text" placeholder="Middle Name" id="mname" name="mname">
+                </div>
+                <div class="form-label">
+                    <label for="">Last Name</label>
+                </div>
+                <div class="form-input">
+                    <input type="text" placeholder="Last Name" id="lname" name="lname">
+                </div>
+                <div class="form-label">
+                    <label for="">Age</label>
+                </div>
+                <div class="form-input">
+                    <input type="number" placeholder="Age" id="age" name="age" min="0" max="100">
+                </div>
+                <div class="form-label">
+                    <label for="">Sex</label>
+                </div>
+                <div class="form-input">
+                    <select name="sex" id="sex">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Non-binary">Non-binary</option>
+                    </select>
+                </div>
+                <div class="form-label">
+                    <label for="">Height</label>
+                </div>
+                <div class="form-input">
+                    <input type="number" placeholder="Height" id="height" name="height">
+                </div>
+                <div class="form-label">
+                    <label for="">Ghana Card Number</label>
+                </div>
+                <div class="form-input">
+                    <input type="text" placeholder="Ghana Card Number" id="ghcard" name="ghcard">
+                </div>
+                <div class="form-label">
+                    <label for="">Marital Status</label>
+                </div>
+                <div class="form-input">
+                    <select name="marital" id="marital">
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="D'ivorced">D'ivorced</option>
+                        <option value="Widow/Widower">Widow/Widower</option>
+                        <option value="Separated">Separated</option>
+                    </select>
+                </div>
+            </div>
+            <div class="submit-btn">     
+                <button type="button" onclick="submitForm()">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script type="text/javascript">
+    function submitForm() {
+    var fname = document.getElementById("fname").value;
+    var mname = document.getElementById("mname").value;
+    var lname = document.getElementById("lname").value;
+    var age = document.getElementById("age").value;
+    var sex = document.getElementById("sex").value;
+    var height = document.getElementById("height").value;
+    var ghcard = document.getElementById("ghcard").value;
+    var marital = document.getElementById("marital").value;
+    var formData = {
+        fname: fname,
+        mname: mname,
+        lname: lname,
+        age: age,
+        sex: sex,
+        height: height,
+        ghcard: ghcard,
+        marital: marital
+    };
+    
+    $.ajax(
+        {url: "http://localhost/webapi/api/submit.php", type: 'POST', data: formData, success: function(response)
+    {
+        alert(response);
+    }})
+}
+</script>
+</html>
